@@ -13,11 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package internalversion
+package v1alpha1
 
 import (
-	kubed "github.com/appscode/kubed/apis/kubed"
-	scheme "github.com/appscode/kubed/client/internalclientset/scheme"
+	v1alpha1 "github.com/appscode/kubed/apis/kubed/v1alpha1"
+	scheme "github.com/appscode/kubed/client/clientset/versioned/scheme"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	rest "k8s.io/client-go/rest"
 )
@@ -30,7 +30,7 @@ type SearchResultsGetter interface {
 
 // SearchResultInterface has methods to work with SearchResult resources.
 type SearchResultInterface interface {
-	Get(name string, options v1.GetOptions) (*kubed.SearchResult, error)
+	Get(name string, options v1.GetOptions) (*v1alpha1.SearchResult, error)
 	SearchResultExpansion
 }
 
@@ -41,7 +41,7 @@ type searchResults struct {
 }
 
 // newSearchResults returns a SearchResults
-func newSearchResults(c *KubedClient, namespace string) *searchResults {
+func newSearchResults(c *KubedV1alpha1Client, namespace string) *searchResults {
 	return &searchResults{
 		client: c.RESTClient(),
 		ns:     namespace,
@@ -49,8 +49,8 @@ func newSearchResults(c *KubedClient, namespace string) *searchResults {
 }
 
 // Get takes name of the searchResult, and returns the corresponding searchResult object, and an error if there is any.
-func (c *searchResults) Get(name string, options v1.GetOptions) (result *kubed.SearchResult, err error) {
-	result = &kubed.SearchResult{}
+func (c *searchResults) Get(name string, options v1.GetOptions) (result *v1alpha1.SearchResult, err error) {
+	result = &v1alpha1.SearchResult{}
 	err = c.client.Get().
 		Namespace(c.ns).
 		Resource("searchresults").

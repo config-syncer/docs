@@ -13,29 +13,31 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package internalversion
+package v1alpha1
 
 import (
-	"github.com/appscode/kubed/client/internalclientset/scheme"
+	v1alpha1 "github.com/appscode/kubed/apis/kubed/v1alpha1"
+	"github.com/appscode/kubed/client/clientset/versioned/scheme"
+	serializer "k8s.io/apimachinery/pkg/runtime/serializer"
 	rest "k8s.io/client-go/rest"
 )
 
-type KubedInterface interface {
+type KubedV1alpha1Interface interface {
 	RESTClient() rest.Interface
 	SearchResultsGetter
 }
 
-// KubedClient is used to interact with features provided by the kubed.appscode.com group.
-type KubedClient struct {
+// KubedV1alpha1Client is used to interact with features provided by the kubed.appscode.com group.
+type KubedV1alpha1Client struct {
 	restClient rest.Interface
 }
 
-func (c *KubedClient) SearchResults(namespace string) SearchResultInterface {
+func (c *KubedV1alpha1Client) SearchResults(namespace string) SearchResultInterface {
 	return newSearchResults(c, namespace)
 }
 
-// NewForConfig creates a new KubedClient for the given config.
-func NewForConfig(c *rest.Config) (*KubedClient, error) {
+// NewForConfig creates a new KubedV1alpha1Client for the given config.
+func NewForConfig(c *rest.Config) (*KubedV1alpha1Client, error) {
 	config := *c
 	if err := setConfigDefaults(&config); err != nil {
 		return nil, err
@@ -44,12 +46,12 @@ func NewForConfig(c *rest.Config) (*KubedClient, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &KubedClient{client}, nil
+	return &KubedV1alpha1Client{client}, nil
 }
 
-// NewForConfigOrDie creates a new KubedClient for the given config and
+// NewForConfigOrDie creates a new KubedV1alpha1Client for the given config and
 // panics if there is an error in the config.
-func NewForConfigOrDie(c *rest.Config) *KubedClient {
+func NewForConfigOrDie(c *rest.Config) *KubedV1alpha1Client {
 	client, err := NewForConfig(c)
 	if err != nil {
 		panic(err)
@@ -57,32 +59,19 @@ func NewForConfigOrDie(c *rest.Config) *KubedClient {
 	return client
 }
 
-// New creates a new KubedClient for the given RESTClient.
-func New(c rest.Interface) *KubedClient {
-	return &KubedClient{c}
+// New creates a new KubedV1alpha1Client for the given RESTClient.
+func New(c rest.Interface) *KubedV1alpha1Client {
+	return &KubedV1alpha1Client{c}
 }
 
 func setConfigDefaults(config *rest.Config) error {
-	g, err := scheme.Registry.Group("kubed.appscode.com")
-	if err != nil {
-		return err
-	}
-
+	gv := v1alpha1.SchemeGroupVersion
+	config.GroupVersion = &gv
 	config.APIPath = "/apis"
+	config.NegotiatedSerializer = serializer.DirectCodecFactory{CodecFactory: scheme.Codecs}
+
 	if config.UserAgent == "" {
 		config.UserAgent = rest.DefaultKubernetesUserAgent()
-	}
-	if config.GroupVersion == nil || config.GroupVersion.Group != g.GroupVersion.Group {
-		gv := g.GroupVersion
-		config.GroupVersion = &gv
-	}
-	config.NegotiatedSerializer = scheme.Codecs
-
-	if config.QPS == 0 {
-		config.QPS = 5
-	}
-	if config.Burst == 0 {
-		config.Burst = 10
 	}
 
 	return nil
@@ -90,7 +79,7 @@ func setConfigDefaults(config *rest.Config) error {
 
 // RESTClient returns a RESTClient that is used to communicate
 // with API server by this client implementation.
-func (c *KubedClient) RESTClient() rest.Interface {
+func (c *KubedV1alpha1Client) RESTClient() rest.Interface {
 	if c == nil {
 		return nil
 	}

@@ -13,5 +13,25 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-// This package has the automatically generated fake clientset.
 package fake
+
+import (
+	v1alpha1 "github.com/appscode/kubed/client/clientset/versioned/typed/kubed/v1alpha1"
+	rest "k8s.io/client-go/rest"
+	testing "k8s.io/client-go/testing"
+)
+
+type FakeKubedV1alpha1 struct {
+	*testing.Fake
+}
+
+func (c *FakeKubedV1alpha1) SearchResults(namespace string) v1alpha1.SearchResultInterface {
+	return &FakeSearchResults{c, namespace}
+}
+
+// RESTClient returns a RESTClient that is used to communicate
+// with API server by this client implementation.
+func (c *FakeKubedV1alpha1) RESTClient() rest.Interface {
+	var ret *rest.RESTClient
+	return ret
+}

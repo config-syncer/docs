@@ -22,13 +22,13 @@ import (
 
 	"kubeops.dev/kubed/pkg/cmds"
 
+	"gomodules.xyz/kglog"
 	_ "k8s.io/client-go/kubernetes/fake"
-	"kmodules.xyz/client-go/logs"
 )
 
 func main() {
-	logs.InitLogs()
-	defer logs.FlushLogs()
+	kglog.InitLogs()
+	defer kglog.FlushLogs()
 
 	if len(os.Getenv("GOMAXPROCS")) == 0 {
 		runtime.GOMAXPROCS(runtime.NumCPU())

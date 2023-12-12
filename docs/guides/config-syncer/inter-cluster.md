@@ -2,13 +2,13 @@
 title: Synchronize Configuration across Kubernetes Clusters
 description: Synchronize Configuration across Kubernetes Clusters
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: inter-cluster-syncer
     name: Across Clusters
     parent: config-syncer
     weight: 15
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: guides
 ---
 
@@ -69,7 +69,7 @@ contexts:
 
 Now, deploy Config Syncer operator in your cluster following the steps [here](/docs/setup/install.md). Below you can see the command to install Config Syncer using Helm 3.
 
-```console
+```bash
 $ helm install kubed appscode/kubed \
   --version {{< param "info.version" >}} \
   --namespace kube-system \
@@ -83,7 +83,7 @@ Once the operator pod is running, go to the next section.
 
 At first, create a ConfigMap called `omni` in the `demo` namespace. This will be our source ConfigMap.
 
-```console
+```bash
 $ kubectl create namespace demo
 namespace "demo" created
 
@@ -93,7 +93,7 @@ configmap "omni" created
 
 Now, apply the `kubed.appscode.com/sync-contexts: "context-1,context-2"` annotation to ConfigMap `omni`.
 
-```console
+```bash
 $ kubectl annotate configmap omni kubed.appscode.com/sync-contexts="context-1,context-2" -n demo
 configmap "omni" annotated
 ```

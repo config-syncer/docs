@@ -1,13 +1,13 @@
 ---
 title: Concepts | Config Syncer
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: concepts-readme
     name: Readme
     parent: concepts
     weight: -1
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: concepts
 url: /products/kubed/{{ .version }}/concepts/
 aliases:

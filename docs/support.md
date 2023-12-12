@@ -2,13 +2,13 @@
 title: Support | Config Syncer
 description: Support
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: support-kubed
     name: Support
     parent: welcome
     weight: 25
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: welcome
 url: /products/kubed/{{ .version }}/welcome/support/
 aliases:

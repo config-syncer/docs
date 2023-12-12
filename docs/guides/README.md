@@ -2,13 +2,13 @@
 title: Overview
 description: Overview of guides
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: guides-overview
     name: Overview
     parent: guides
     weight: -1
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: guides
 url: /products/kubed/{{ .version }}/guides/
 aliases:

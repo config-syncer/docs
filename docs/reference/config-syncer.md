@@ -1,14 +1,14 @@
 ---
 title: Config-Syncer
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: config-syncer
     name: Config-Syncer
     parent: reference
     weight: 0
 
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: reference
 aliases:
   - /products/kubed/{{ .version }}/reference/

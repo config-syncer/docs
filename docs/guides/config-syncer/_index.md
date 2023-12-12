@@ -2,10 +2,10 @@
 title: Configuration Syncer | Kubernetes
 description: Configuration Syncer for Kubernetes
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: config-syncer
     parent: guides
     name: Configuration Syncer
     weight: 20
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 ---

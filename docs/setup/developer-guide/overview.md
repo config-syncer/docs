@@ -2,13 +2,13 @@
 title: Overview | Developer Guide
 description: Developer Guide Overview
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: developer-guide-readme
     name: Overview
     parent: developer-guide
     weight: 15
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: setup
 ---
 
@@ -29,25 +29,25 @@ development environment, please follow [these instructions](https://golang.org/d
 
 #### Download Source
 
-```console
+```bash
 $ go get kubeops.dev/config-syncer
 $ cd $(go env GOPATH)/src/kubeops.dev/config-syncer
 ```
 
 #### Install Dev tools
 To install various dev tools for Config Syncer, run the following command:
-```console
+```bash
 $ ./hack/builddeps.sh
 ```
 
 #### Build Binary
-```console
+```bash
 $ ./hack/make.py
 $ kubed version
 ```
 
 #### Run Binary
-```console
+```bash
 $ kubed run \
   --secure-port=8443 \
   --kubeconfig="$HOME/.kube/config" \
@@ -60,14 +60,14 @@ $ kubed run \
 #### Dependency management
 Config Syncer uses [Glide](https://github.com/Masterminds/glide) to manage dependencies. Dependencies are already checked in the `vendor` folder.
 If you want to update/add dependencies, run:
-```console
+```bash
 $ glide slow
 ```
 
 #### Build Docker images
 To build and push your custom Docker image, follow the steps below. To release a new version of Config Syncer, please follow the [release guide](/docs/setup/developer-guide/release.md).
 
-```console
+```bash
 # Build Docker image
 $ ./hack/docker/setup.sh; ./hack/docker/setup.sh push
 
@@ -79,19 +79,19 @@ $ docker push <image>:<tag>
 ```
 
 #### Generate CLI Reference Docs
-```console
+```bash
 $ ./hack/gendocs/make.sh
 ```
 
 ### Testing Config Syncer
 #### Unit tests
-```console
+```bash
 $ ./hack/make.py test unit
 ```
 
 #### Run e2e tests
 Config Syncer uses [Ginkgo](http://onsi.github.io/ginkgo/) to run e2e tests.
-```console
+```bash
 $ ./hack/make.py test e2e
 ```
 

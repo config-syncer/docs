@@ -2,13 +2,13 @@
 title: Contributing | Config Syncer
 description: Contributing
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: contributing-kubed
     name: Contributing
     parent: welcome
     weight: 15
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: welcome
 url: /products/kubed/{{ .version }}/welcome/contributing/
 aliases:

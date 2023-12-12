@@ -2,13 +2,13 @@
 title: Monitoring
 description: Monitoring
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: monitoring-guide
     name: Monitoring
     parent: guides
     weight: 35
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: guides
 ---
 
@@ -47,7 +47,7 @@ subjects:
   name: system:anonymous
 ```
 
-```console
+```bash
 $ kubectl auth reconcile -f docs/examples/monitoring/metrics-collector.yaml
 clusterrole.rbac.authorization.k8s.io "appscode:system:metrics-collector" reconciled
 clusterrolebinding.rbac.authorization.k8s.io "appscode:system:metrics-collector" reconciled
@@ -70,7 +70,7 @@ Forwarding from [::1]:8443 -> 8443
 
 4. Once you are done, remove access to `system:anonymous` user.
 
-```console
+```bash
 $ kubectl delete -f docs/examples/monitoring/metrics-collector.yaml
 clusterrole.rbac.authorization.k8s.io "appscode:system:metrics-collector" deleted
 clusterrolebinding.rbac.authorization.k8s.io "appscode:system:metrics-collector" deleted

@@ -1,9 +1,9 @@
 ---
 title: Setup | Config Syncer
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: setup
     name: Setup
     weight: 30
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 ---

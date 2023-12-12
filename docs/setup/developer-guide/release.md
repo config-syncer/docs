@@ -2,13 +2,13 @@
 title: Release | Config Syncer
 description: kubed Release
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: release
     name: Release
     parent: developer-guide
     weight: 15
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: setup
 ---
 
@@ -20,7 +20,7 @@ The following steps must be done from a Linux x64 bit machine.
 - Push changes to the `release-x` branch and apply new tag.
 - Push all the changes to remote repo.
 - Build and push kubed docker image:
-```console
+```bash
 $ cd ~/go/src/kubeops.dev/config-syncer
 $ env APPSCODE_ENV=prod ./hack/make.py build
 $ ./hack/docker/setup.sh; env APPSCODE_ENV=prod ./hack/docker/setup.sh release

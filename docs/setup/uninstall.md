@@ -2,13 +2,13 @@
 title: Config Syncer Uninstall
 description: Config Syncer Uninstall
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: kubed-uninstall
     name: Uninstall
     parent: setup
     weight: 20
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: setup
 ---
 
@@ -23,9 +23,6 @@ Please follow the steps below to uninstall Config Syncer:
     <a class="nav-link active" id="helm3-tab" data-toggle="tab" href="#helm3" role="tab" aria-controls="helm3" aria-selected="true">Helm 3</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="helm2-tab" data-toggle="tab" href="#helm2" role="tab" aria-controls="helm2" aria-selected="false">Helm 2</a>
-  </li>
-  <li class="nav-item">
     <a class="nav-link" id="script-tab" data-toggle="tab" href="#script" role="tab" aria-controls="script" aria-selected="false">YAML</a>
   </li>
 </ul>
@@ -36,17 +33,8 @@ Please follow the steps below to uninstall Config Syncer:
 
 In Helm 3, release names are [scoped to a namespace](https://v3.helm.sh/docs/faq/#release-names-are-now-scoped-to-the-namespace). So, provide the namespace you used to install the operator when installing.
 
-```console
-$ helm uninstall kubed --namespace kube-system
-```
-
-</div>
-<div class="tab-pane fade" id="helm2" role="tabpanel" aria-labelledby="helm2-tab">
-
-## Using Helm 2
-
-```console
-$ helm delete kubed
+```bash
+$ helm uninstall config-syncer --namespace kubeops
 ```
 
 </div>
@@ -56,8 +44,11 @@ $ helm delete kubed
 
 If you prefer to not use Helm, you can generate YAMLs from Config Syncer chart and uninstall using `kubectl`.
 
-```console
-$ helm template kubed appscode/kubed --namespace kube-system | kubectl delete -f -
+```bash
+$ helm template config-syncer oci://ghcr.io/appscode-charts/config-syncer \
+  --version {{< param "info.version" >}} \
+  --namespace kubeops --create-namespace \
+  --set global.license="nothing" | kubectl delete -f -
 ```
 
 </div>

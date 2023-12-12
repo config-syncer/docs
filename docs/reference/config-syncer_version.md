@@ -1,12 +1,12 @@
 ---
 title: Config-Syncer Version
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: config-syncer-version
     name: Config-Syncer Version
     parent: reference
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: reference
 ---
 ## config-syncer version

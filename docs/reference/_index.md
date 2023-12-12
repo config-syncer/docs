@@ -2,9 +2,9 @@
 title: Reference
 description: Config Syncer CLI Reference
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: reference
     name: Reference
     weight: 1000
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 ---

@@ -2,13 +2,13 @@
 title: Changelog | Config Syncer
 description: Changelog
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: changelog-kubed
     name: Changelog
     parent: welcome
     weight: 10
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: welcome
 url: /products/kubed/{{ .version }}/welcome/changelog/
 aliases:

@@ -2,13 +2,13 @@
 title: Synchronize Configuration across Namespaces
 description: Synchronize Configuration across Namespaces
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: intra-cluster-syncer
     name: Across Namespaces
     parent: config-syncer
     weight: 10
 product_name: kubed
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 section_menu_id: guides
 ---
 
@@ -34,7 +34,7 @@ In this tutorial, a ConfigMap will be synced across all Kubernetes namespaces us
 
 To keep things isolated, this tutorial uses a separate namespace called `demo` throughout this tutorial. Run the following command to prepare your cluster for this tutorial:
 
-```console
+```bash
 $ kubectl create namespace demo
 namespace "demo" created
 
@@ -48,7 +48,7 @@ demo          Active    4m
 
 Now, create a ConfigMap called `omni` in the `demo` namespace. This will be our source ConfigMap.
 
-```console
+```bash
 $ kubectl apply -f ./docs/examples/config-syncer/demo-0.yaml
 configmap "omni" created
 
@@ -77,7 +77,7 @@ metadata:
 
 Now, apply the `kubed.appscode.com/sync: ""` annotation to ConfigMap `omni`. Config Syncer operator will notice that and copy the ConfigMap in all existing namespaces.
 
-```console
+```bash
 $ kubectl annotate configmap omni kubed.appscode.com/sync="" -n demo
 configmap "omni" annotated
 
@@ -110,7 +110,7 @@ metadata:
 
 Now, create a new namespace called `other`. Config Syncer will copy ConfigMap `omni` into that namespace.
 
-```console
+```bash
 $ kubectl create ns other
 namespace "other" created
 
@@ -124,7 +124,7 @@ other         omni                                 2         1m
 
 Alas! there is a typo is the ConfigMap data. Let's fix that.
 
-```console
+```bash
 $ kubectl apply -f ./docs/examples/config-syncer/demo-1.yaml
 configmap "omni" configured
 
@@ -161,7 +161,7 @@ Config Syncer operator notices that the source ConfigMap `omni` has been updated
 
 Lets' change annotation value of source ConfigMap `omni`.
 
-```console
+```bash
 $ kubectl annotate configmap omni kubed.appscode.com/sync="app=kubed" -n demo --overwrite
 configmap "omni" annotated
 
@@ -172,7 +172,7 @@ demo          omni                                 2         8m
 Config Syncer operator removes the ConfigMap from all namespaces (except source) since no namespace matches the label-selector `app=kubed`.
 Now, lets' apply `app=kubed` label to `other` namespace. Config Syncer operator will then sync the ConfigMap to `other` namespace.
 
-```console
+```bash
 $ kubectl label namespace other app=kubed
 namespace "other" labeled
 
@@ -185,18 +185,21 @@ other         omni                                 2         5m
 
 By default, Config Syncer will watch all namespaces for configmaps and secrets with `kubed.appscode.com/sync` annotation. But you can restrict the source namespace for configmaps and secrets by passing `config.configSourceNamespace` value during installation.
 
-```console
-$ helm install kubed appscode/kubed \
-  --namespace=kube-system \
+```bash
+$ helm install config-syncer oci://ghcr.io/appscode-charts/config-syncer \
+  --version {{< param "info.version" >}} \
+  --namespace kubeops --create-namespace \
+  --set-file license=/path/to/the/license.txt \
   --set imagePullPolicy=Always \
-  --set config.configSourceNamespace=demo
+  --set config.configSourceNamespace=demo \
+  --wait --burst-limit=10000 --debug
 ```
 
 ## Remove Annotation
 
 Now, lets' remove the annotation from source ConfigMap `omni`. Please note that `-` after annotation key `kubed.appscode.com/sync-`. This tells kubectl to remove this annotation from ConfigMap `omni`.
 
-```console
+```bash
 $ kubectl annotate configmap omni kubed.appscode.com/sync- -n demo
 configmap "omni" annotated
 
@@ -224,7 +227,7 @@ This annotations are used by Config Syncer operator to list the copies for a spe
 
 To cleanup the Kubernetes resources created by this tutorial, run the following commands:
 
-```console
+```bash
 $ kubectl delete ns other
 namespace "other" deleted
 

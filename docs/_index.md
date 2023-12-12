@@ -2,9 +2,9 @@
 title: Docs | Config Syncer
 description: Config Syncer Docs
 menu:
-  product_kubed_{{ .version }}:
+  docs_{{ .version }}:
     identifier: welcome
     name: Welcome
     weight: 10
-menu_name: product_kubed_{{ .version }}
+menu_name: docs_{{ .version }}
 ---

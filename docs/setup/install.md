@@ -18,6 +18,14 @@ section_menu_id: setup
 
 Config Syncer operator can be installed via a script or as a Helm chart.
 
+## Get a Free License
+
+Download a FREE license from [AppsCode License Server](https://appscode.com/issue-license?p=config-syncer).
+
+> Config Syncer licensing process has been designed to work with CI/CD workflow. You can automatically obtain a license from your CI/CD pipeline by following the guide from [here](https://github.com/appscode/offline-license-server#offline-license-server).
+
+## Install
+
 <ul class="nav nav-tabs" id="installerTab" role="tablist">
   <li class="nav-item">
     <a class="nav-link active" id="helm3-tab" data-toggle="tab" href="#helm3" role="tab" aria-controls="helm3" aria-selected="true">Helm 3 (Recommended)</a>
@@ -85,3 +93,9 @@ Config Syncer includes a check command to verify a cluster config. Download the 
 $ kubed check --clusterconfig=./hack/deploy/config.yaml
 Cluster config was parsed successfully.
 ```
+
+## Purchase Config Syncer License
+
+If you are interested in purchasing Config Syncer license, please contact us via sales@appscode.com for further discussion. You can also set up a meeting via our [calendly link](https://calendly.com/appscode/30min).
+
+If you are willing to purchase Config Syncer but need more time to test in your dev cluster, feel free to contact sales@appscode.com. We will be happy to extend your trial period.

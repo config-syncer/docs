@@ -10,9 +10,9 @@ menu:
 product_name: kubed
 menu_name: docs_{{ .version }}
 section_menu_id: welcome
-url: /products/kubed/{{ .version }}/welcome/contributing/
+url: /docs/{{ .version }}/welcome/contributing/
 aliases:
-  - /products/kubed/{{ .version }}/CONTRIBUTING/
+  - /docs/{{ .version }}/CONTRIBUTING/
 ---
 
 # Contribution Guidelines

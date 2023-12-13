@@ -10,10 +10,10 @@ menu:
 product_name: kubed
 menu_name: docs_{{ .version }}
 section_menu_id: welcome
-url: /products/kubed/{{ .version }}/welcome/
+url: /docs/{{ .version }}/welcome/
 aliases:
-  - /products/kubed/{{ .version }}/
-  - /products/kubed/{{ .version }}/README/
+  - /docs/{{ .version }}/
+  - /docs/{{ .version }}/README/
 ---
 
 # Config Syncer

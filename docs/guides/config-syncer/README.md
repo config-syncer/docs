@@ -10,9 +10,9 @@ menu:
 product_name: kubed
 menu_name: docs_{{ .version }}
 section_menu_id: guides
-url: /products/kubed/{{ .version }}/guides/config-syncer/
+url: /docs/{{ .version }}/guides/config-syncer/
 aliases:
-  - /products/kubed/{{ .version }}/guides/config-syncer/README
+  - /docs/{{ .version }}/guides/config-syncer/README
 ---
 
 # Configuration Syncer

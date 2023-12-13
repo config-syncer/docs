@@ -10,9 +10,9 @@ menu:
 product_name: kubed
 menu_name: docs_{{ .version }}
 section_menu_id: welcome
-url: /products/kubed/{{ .version }}/welcome/support/
+url: /docs/{{ .version }}/welcome/support/
 aliases:
-  - /products/kubed/{{ .version }}/support/
+  - /docs/{{ .version }}/support/
 ---
 
 # Support

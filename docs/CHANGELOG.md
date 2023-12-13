@@ -10,9 +10,9 @@ menu:
 product_name: kubed
 menu_name: docs_{{ .version }}
 section_menu_id: welcome
-url: /products/kubed/{{ .version }}/welcome/changelog/
+url: /docs/{{ .version }}/welcome/changelog/
 aliases:
-  - /products/kubed/{{ .version }}/CHANGELOG/
+  - /docs/{{ .version }}/CHANGELOG/
 ---
 
 # Change Log

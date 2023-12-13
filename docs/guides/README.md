@@ -10,9 +10,9 @@ menu:
 product_name: kubed
 menu_name: docs_{{ .version }}
 section_menu_id: guides
-url: /products/kubed/{{ .version }}/guides/
+url: /docs/{{ .version }}/guides/
 aliases:
-  - /products/kubed/{{ .version }}/guides/README/
+  - /docs/{{ .version }}/guides/README/
 ---
 
 # Guides

@@ -11,7 +11,7 @@ product_name: kubed
 menu_name: docs_{{ .version }}
 section_menu_id: reference
 aliases:
-  - /products/kubed/{{ .version }}/reference/
+  - /docs/{{ .version }}/reference/
 
 ---
 ## config-syncer

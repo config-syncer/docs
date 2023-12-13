@@ -10,9 +10,9 @@ menu:
 product_name: kubed
 menu_name: docs_{{ .version }}
 section_menu_id: setup
-url: /products/kubed/{{ .version }}/setup/
+url: /docs/{{ .version }}/setup/
 aliases:
-  - /products/kubed/{{ .version }}/setup/README/
+  - /docs/{{ .version }}/setup/README/
 ---
 
 # Setup

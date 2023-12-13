@@ -9,9 +9,9 @@ menu:
 product_name: kubed
 menu_name: docs_{{ .version }}
 section_menu_id: concepts
-url: /products/kubed/{{ .version }}/concepts/
+url: /docs/{{ .version }}/concepts/
 aliases:
-  - /products/kubed/{{ .version }}/concepts/README/
+  - /docs/{{ .version }}/concepts/README/
 ---
 
 # Concepts

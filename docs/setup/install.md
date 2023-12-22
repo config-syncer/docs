@@ -39,7 +39,7 @@ Download a FREE license from [AppsCode License Server](https://appscode.com/issu
 
 ## Using Helm 3
 
-Config Syncer can be installed via [Helm](https://helm.sh/) using the [chart](https://github.com/kubeops/config-syncer/tree/{{< param "info.version" >}}/charts/config-syncer) from [AppsCode Charts Repository](https://github.com/appscode/charts). To install the chart with the release name `kubed`:
+Config Syncer can be installed via [Helm](https://helm.sh/) using the [chart](https://github.com/config-syncer/config-syncer/tree/{{< param "info.version" >}}/charts/config-syncer) from [AppsCode Charts Repository](https://github.com/appscode/charts). To install the chart with the release name `kubed`:
 
 ```bash
 $ helm install config-syncer \
@@ -50,7 +50,7 @@ $ helm install config-syncer \
   --wait --burst-limit=10000 --debug
 ```
 
-To see the detailed configuration options, visit [here](https://github.com/kubeops/config-syncer/tree/{{< param "info.version" >}}/charts/config-syncer).
+To see the detailed configuration options, visit [here](https://github.com/config-syncer/config-syncer/tree/{{< param "info.version" >}}/charts/config-syncer).
 
 </div>
 <div class="tab-pane fade" id="script" role="tabpanel" aria-labelledby="script-tab">
@@ -68,7 +68,7 @@ $ helm template config-syncer \
   --no-hooks | kubectl apply -f -
 ```
 
-To see the detailed configuration options, visit [here](https://github.com/kubeops/config-syncer/tree/{{< param "info.version" >}}/charts/config-syncer).
+To see the detailed configuration options, visit [here](https://github.com/config-syncer/config-syncer/tree/{{< param "info.version" >}}/charts/config-syncer).
 
 </div>
 </div>
@@ -87,7 +87,7 @@ In addition, if your GKE cluster is a [private cluster](https://cloud.google.com
 
 ## Verify installation
 
-Config Syncer includes a check command to verify a cluster config. Download the pre-built binary from [config-syncer Github releases](https://github.com/kubeops/config-syncer/releases) and put the binary to some directory in your `PATH`.
+Config Syncer includes a check command to verify a cluster config. Download the pre-built binary from [config-syncer Github releases](https://github.com/config-syncer/config-syncer/releases) and put the binary to some directory in your `PATH`.
 
 ```bash
 $ kubed check --clusterconfig=./hack/deploy/config.yaml

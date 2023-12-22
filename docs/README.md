@@ -29,5 +29,5 @@ Config Syncer (fka Kubed) by AppsCode is a Kubernetes Cluster Operator Daemon. F
 - [Reference](/docs/reference/). Detailed exhaustive lists of
 command-line options, configuration options, API definitions, and procedures.
 
-We're always looking for help improving our documentation, so please don't hesitate to [file an issue](https://github.com/kubeops/config-syncer/issues/new) if you see some problem. Or better yet, submit your own [contributions](/docs/CONTRIBUTING.md) to help
+We're always looking for help improving our documentation, so please don't hesitate to [file an issue](https://github.com/config-syncer/config-syncer/issues/new) if you see some problem. Or better yet, submit your own [contributions](/docs/CONTRIBUTING.md) to help
 make our docs better.

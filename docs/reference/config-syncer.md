@@ -20,7 +20,7 @@ Config Syncer by AppsCode - A Kubernetes Configuration Syncer
 
 ### Synopsis
 
-Config Syncer is a Kubernetes controller to sync configmaps and secrets. For more information, visit here: https://github.com/kubeops/config-syncer/tree/master/docs
+Config Syncer is a Kubernetes controller to sync configmaps and secrets. For more information, visit here: https://github.com/config-syncer/config-syncer/tree/master/docs
 
 ### Options
 

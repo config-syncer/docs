@@ -113,8 +113,14 @@ Once the operator pod is running, go to the next section.
 At first, create a ConfigMap called `omni` in the `default` namespace. This will be our source ConfigMap.
 
 ```bash
+$ kubectl create namespace demo
+namespace "demo" created
+
 $ kubectl apply -f ./docs/examples/cluster-syncer/demo.yaml
 configmap "omni" created
+
+$ kubectl annotate configmap omni kubed.appscode.com/sync="" -n demo
+configmap "omni" annotated
 ```
 
 Now, apply the `kubed.appscode.com/sync-contexts: "kind-c1,kind-c2"` annotation to ConfigMap `omni`.

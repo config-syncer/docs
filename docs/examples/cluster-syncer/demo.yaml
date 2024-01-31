@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: omni
-  namespace: demo
+  namespace: default
 data:
   you: only
   live: once

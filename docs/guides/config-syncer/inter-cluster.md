@@ -70,35 +70,47 @@ contexts:
 Now, deploy Config Syncer operator in your cluster following the steps [here](/docs/setup/install.md). Below you can see the command to install Config Syncer using Helm 3.
 
 ```bash
-$ helm install kubed appscode/kubed \
+$ rm -rf $HOME/.kube/config
+
+$ kind create cluster --name=hub
+$ kind create cluster --name=c1
+$ kind create cluster --name=c2
+$ kind export kubeconfig --name=hub
+
+$ cp $HOME/.kube/config /tmp/.kubeconfig
+# change c1 and c2 kube-apiserver address to
+# https://c1-control-plane:6443 and https://c2-control-plane:6443
+# respectively. This will allow hub KIND cluster to access these clusters.
+
+$ helm upgrade -i config-syncer \
+  oci://ghcr.io/appscode-charts/config-syncer \
   --version {{< param "info.version" >}} \
-  --namespace kube-system \
-  --set config.clusterName=kind \
-  --set config.kubeconfigContent="$(cat ./docs/examples/cluster-syncer/demo-kubeconfig.yaml)"
+  --namespace kubeops --create-namespace \
+  --set config.clusterName=hub \
+  --set-file config.kubeconfigContent=/tmp/.kubeconfig \
+  --set-file license=/path/to/the/license.txt \
+  --wait --burst-limit=10000 --debug
 ```
 
 Once the operator pod is running, go to the next section.
 
 ## Synchronize ConfigMap
 
-At first, create a ConfigMap called `omni` in the `demo` namespace. This will be our source ConfigMap.
+At first, create a ConfigMap called `omni` in the `default` namespace. This will be our source ConfigMap.
 
 ```bash
-$ kubectl create namespace demo
-namespace "demo" created
-
-$ kubectl apply -f ./docs/examples/config-syncer/demo.yaml
+$ kubectl apply -f ./docs/examples/cluster-syncer/demo.yaml
 configmap "omni" created
 ```
 
-Now, apply the `kubed.appscode.com/sync-contexts: "context-1,context-2"` annotation to ConfigMap `omni`.
+Now, apply the `kubed.appscode.com/sync-contexts: "kind-c1,kind-c2"` annotation to ConfigMap `omni`.
 
 ```bash
-$ kubectl annotate configmap omni kubed.appscode.com/sync-contexts="context-1,context-2" -n demo
+$ kubectl annotate configmap omni kubed.appscode.com/sync-contexts="kind-c1,kind-c2" -n default
 configmap "omni" annotated
 ```
 
-It will create configmap "omni" in `cluster-1` and `cluster-2`. For `cluster-1` it will sync into source namespace `demo`  since no namespace specified in `context-1` and for `cluster-2` it will sync into `demo-cluster-2` namespace since namespace specified in `context-2`. Here we assume that those namespaces already exits in the respective clusters.
+It will create configmap "omni" in `cluster-1` and `cluster-2`. For `cluster-1` it will sync into source namespace `default`  since no namespace specified in `context-1` and for `cluster-2` it will sync into `default` namespace since namespace specified in `context-2`. Here we assume that those namespaces already exits in the respective clusters.
 
 Other concepts like updating source configmap, removing annotation, origin annotation, origin labels, etc. are similar to the tutorial described [here](/docs/guides/config-syncer/intra-cluster.md).
 

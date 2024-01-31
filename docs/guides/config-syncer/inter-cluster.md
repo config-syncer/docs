@@ -36,35 +36,49 @@ To enable config syncer for different clusters, you need a `kubeconfig` file con
 $ cat ./docs/examples/cluster-syncer/demo-kubeconfig.yaml
 
 apiVersion: v1
-kind: Config
 clusters:
-- name: cluster-1
-  cluster:
+- cluster:
     certificate-authority-data: ...
-    server: https://1.2.3.4
-- name: cluster-2
-  cluster:
+    server: https://127.0.0.1:55858
+  name: kind-hub
+- cluster:
     certificate-authority-data: ...
-    server: https://2.3.4.5
-users:
-- name: user-1
-  user:
-    client-certificate: ...
-    client-key: ...
-- name: user-2
-  user:
-    client-certificate: ...
-    client-key: ...
+    server: https://c1-control-plane:6443
+  name: kind-c1
+- cluster:
+    certificate-authority-data: ...
+    server: https://c2-control-plane:6443
+  name: kind-c2
 contexts:
-- name: context-1
-  context:
-    cluster: cluster-1
-    user: user-1
-- name: context-2
-  context:
-    cluster: cluster-2
-    user: user-2
+- context:
+    cluster: kind-hub
+    user: kind-hub
+  name: kind-hub
+- context:
+    cluster: kind-c1
+    user: kind-c1
+  name: kind-c1
+- context:
+    cluster: kind-c2
+    user: kind-c2
     namespace: demo-cluster-2
+  name: kind-c2
+current-context: kind-c1
+kind: Config
+preferences: {}
+users:
+- name: kind-hub
+  user:
+    client-certificate-data: ...
+    client-key-data: ...
+- name: kind-c1
+  user:
+    client-certificate-data: ...
+    client-key-data: ...
+- name: kind-c2
+  user:
+    client-certificate-data: ...
+    client-key-data: ...
 ```
 
 Now, deploy Config Syncer operator in your cluster following the steps [here](/docs/setup/install.md). Below you can see the command to install Config Syncer using Helm 3.
@@ -110,7 +124,7 @@ $ kubectl annotate configmap omni kubed.appscode.com/sync-contexts="kind-c1,kind
 configmap "omni" annotated
 ```
 
-It will create configmap "omni" in `cluster-1` and `cluster-2`. For `cluster-1` it will sync into source namespace `default`  since no namespace specified in `context-1` and for `cluster-2` it will sync into `default` namespace since namespace specified in `context-2`. Here we assume that those namespaces already exits in the respective clusters.
+It will create configmap "omni" in `cluster-1` and `cluster-2`. For `cluster-1` it will sync into source namespace `default`  since no namespace specified in `context-1` and for `cluster-2` it will sync into `demo-cluster-2` namespace since namespace specified in `context-2`. Here we assume that those namespaces already exits in the respective clusters.
 
 Other concepts like updating source configmap, removing annotation, origin annotation, origin labels, etc. are similar to the tutorial described [here](/docs/guides/config-syncer/intra-cluster.md).
 

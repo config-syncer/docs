@@ -21,3 +21,4 @@ This section contains guides on how to use Config Syncer to synchronize Configma
 
 - [Synchronize Configuration across Namespaces](/docs/guides/config-syncer/intra-cluster.md): This tutorial will show you how Config Syncer can sync ConfigMaps/Secrets across Kubernetes namespaces.
 - [Synchronize Configuration across Clusters](/docs/guides/config-syncer/inter-cluster.md): This tutorial will show you how Config Syncer can sync ConfigMaps/Secrets across Kubernetes cluster.
+- [Synchronize Configuration from an OCM Hub to Managed Clusters](/docs/guides/config-syncer/ocm-addon.md): This tutorial will show you how the Config Syncer OCM addon syncs ConfigMaps/Secrets from an Open Cluster Management hub to its managed clusters.

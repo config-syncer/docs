@@ -73,6 +73,8 @@ config-syncer run [flags]
       --egress-selector-config-file string                      File with apiserver egress selector configuration.
   -h, --help                                                    help for run
       --http2-max-streams-per-connection int                    The limit that the server gives to clients for the maximum number of streams in an HTTP/2 connection. Zero means to use golang's default. (default 1000)
+      --hub-kubeconfig string                                   Path to OCM hub kubeconfig; enables syncing from the hub
+      --hub-namespace string                                    Namespace on the OCM hub holding the mirrors for this cluster
       --kubeconfig string                                       kubeconfig file pointing at the 'core' kubernetes server.
       --kubeconfig-file string                                  kubeconfig file
       --permit-address-sharing                                  If true, SO_REUSEADDR will be used when binding the port. This allows binding to wildcard IPs like 0.0.0.0 and specific IPs in parallel, and it avoids waiting for the kernel to release sockets in TIME_WAIT state. [default=false]

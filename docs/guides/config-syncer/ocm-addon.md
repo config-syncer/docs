@@ -37,19 +37,7 @@ The addon has two components:
 | Manager | hub, namespace `open-cluster-management-addon` | Deploys the agent to every selected spoke. Copies each annotated source into the cluster namespace of every target spoke (a **mirror**). |
 | Agent | each spoke, namespace `kubeops` | A regular Config Syncer that also watches its own cluster namespace on the hub and writes the mirrors into the spoke's namespaces. |
 
-```
-                 HUB                                            SPOKE spoke-1
- ┌─────────────────────────────────────────┐        ┌──────────────────────────┐
- │ ns demo                                 │        │ ns kubeops               │
- │   cm/omni                               │        │   deploy/config-syncer   │
- │     sync-to-clusters: spoke-1           │        │     (agent) ────────┐    │
- │        │                                │        │                     │    │
- │        │ manager                        │  watch │                     ▼    │
- │        ▼                                │◀───────┤ ns demo                  │
- │ ns spoke-1  (cluster namespace)         │ (read- │   cm/omni  (copy)        │
- │   cm/demo.omni   (mirror)               │  only) │                          │
- └─────────────────────────────────────────┘        └──────────────────────────┘
-```
+![Config Syncer OCM addon architecture](/docs/images/config-syncer/ocm-addon.svg)
 
 For example, a ConfigMap `omni` in namespace `demo` on the hub, annotated with `kubed.appscode.com/sync-to-clusters: spoke-1`:
 
